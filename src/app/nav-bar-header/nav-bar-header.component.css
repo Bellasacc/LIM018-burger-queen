@@ -1,0 +1,32 @@
+.container-nav {
+  background: #B43011;
+  height: 10vh;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-weight: 700;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 50px;
+}
+
+ul {
+  display: flex;
+  gap: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
