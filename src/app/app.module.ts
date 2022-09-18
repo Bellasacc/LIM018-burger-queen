@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { RequestNameClientComponent } from './request-name-client/request-name-client.component';
 import { NavBarHeaderComponent } from './nav-bar-header/nav-bar-header.component';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes:Routes = [
   {
