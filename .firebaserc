@@ -1,6 +1,7 @@
 {
   "projects": {
-    "burger-queen-bd": "burger-queen-9415b"
+    "burger-queen-bd": "burger-queen-9415b",
+    "default": "burger-queen-9415b"
   },
   "targets": {},
   "etags": {}
