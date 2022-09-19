@@ -1,0 +1,27 @@
+<app-nav-bar-header></app-nav-bar-header>
+<div class="container-menu-order">
+  <section class="menu-side">
+    <ul class="ul-menu-side">
+      <li class="li-menu-side" (click)="showMenu('breakfast')" id="menu-breakfast">Desayuno</li>
+      <li class="li-menu-side" (click)="showMenu('burgers')" id="menu-burger">Burgers</li>
+      <li class="li-menu-side" (click)="showMenu('side-dishes')" id="menu-sidedish">Guarnición</li>
+      <li class="li-menu-side" (click)="showMenu('drinks')" id="menu-drink">Bebidas</li>
+    </ul>
+  </section>
+  <section class="menu-items">
+    <div *ngFor="let item of menu" class="item">
+      <img src="{{item.link}}" alt="">
+      <p class="item-description">{{ item.description }}</p>
+      <p class="item-price">$ {{ item.price }}</p>
+    </div>
+  </section>
+  <section class="order-list">
+    <div class="order-name">
+      <p>Cliente:</p>
+      <div class="order-getname">{{ name }}</div>
+    </div>
+    <div class="order-items">
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>
