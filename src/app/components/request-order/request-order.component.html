@@ -37,7 +37,7 @@
             <th>{{ item.amount }}</th>
             <td>{{ item.description }}</td>
             <td class="price">$ {{ item.price * item.amount }}</td>
-            <td><img src="./assets/img/delete.png"></td>
+            <td><img src="./assets/img/delete.png" (click)="onDeleteItem(item)" ></td>
           </tr>
         </tbody>
         <tfoot>

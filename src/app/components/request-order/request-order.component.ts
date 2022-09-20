@@ -37,9 +37,20 @@ export class RequestOrderComponent implements OnInit {
       this.items.push({ ...item, amount: 1 });
     }
     // calculamos el precio total de la orden
-    this.total = this.items.reduce((a,b) => a + (b.price * b.amount),0)
+    this.total = this.items.reduce((a,b) => a + (b.price * b.amount), 0);
   }
 
+  onDeleteItem(item: { description: string, price: number, amount: number, link: string }) {
+    this.items = this.items.map((elem) => {
+      if (elem.description === item.description && elem.amount > 0) {
+        elem.amount -= 1;
+        return elem;
+     }
+     return elem;
+    }).filter((elem) => elem.amount !== 0);
+    this.total = this.items.reduce((a,b) => a + (b.price * b.amount), 0);
+  }
+  
   ngOnInit(): void {
     this.showMenu('breakfast');
     this.route.queryParams.subscribe((params: any) => {
