@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-request-name-client',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestNameClientComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
+  
+  name: any;
 
   ngOnInit(): void {
   }
 
-
+  onNext() {
+    this.route.navigate(['/hacer-pedido'], {queryParams: {data: this.name}})
+  }  
 }

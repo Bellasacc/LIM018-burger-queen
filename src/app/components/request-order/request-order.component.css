@@ -1,0 +1,142 @@
+.container-menu-order {
+  display: flex;
+  height: 85vh;
+}
+
+.menu-side {
+  height: 100%;
+  width: 6vw;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+}
+
+.ul-menu-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.li-menu-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-lr;
+  list-style: none;
+  background: #FFA10D;
+  width: 100%;
+  height: 155px;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
+
+.desayuno, .hamburguesas{
+  color: white;
+  background-color: #591608;
+}
+
+.menu-items {
+  width: 47vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 198px;
+  height: 216px;
+  margin: 10px 0;
+  padding: 0 50px;
+  border-radius: 20px;
+  background: #C5BBB1;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.item-description {
+  color: #591608;
+  text-align: center;
+}
+
+.item-price {
+  color: #B43011;
+}
+
+.order-list {
+  padding: 20px;
+}
+
+.order-name {
+  display: flex;
+  width: 47vw;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #591608;
+}
+
+.order-getname {
+  background: #FF9D84;
+  width: 70%;
+  height: 50px;
+  text-align: center;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.order-items {
+  background: #C5BBB1;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+table {
+  width: 100%;
+  font-size: 18px;
+  border-collapse: collapse;
+  max-width: 0px auto;
+}
+
+table th{
+  padding: 3px 20px;
+  border-bottom: 1px solid #ddd;
+  color: #A7290D;
+}
+table tr{
+  border-bottom: 1px solid #ddd
+}
+
+.price {
+  text-align: center;
+}
+
+.btn-send-order {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 30px;
+  background: #B43011;
+  width: 211px;
+  height: 53px;
+  cursor: pointer;
+}
