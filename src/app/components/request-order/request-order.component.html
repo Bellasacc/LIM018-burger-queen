@@ -34,10 +34,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of items">
-            <th>1</th>
-            <td>{{item.description}}</td>
-            <td class="price">$ {{item.price}}</td>
-            <td><img src="./assets/img/delete.png"></td>
+            <th>{{ item.amount }}</th>
+            <td>{{ item.description }}</td>
+            <td class="price">$ {{ item.price * item.amount }}</td>
+            <td><img src="./assets/img/delete.png" (click)="onDeleteItem(item)" ></td>
           </tr>
         </tbody>
         <tfoot>
