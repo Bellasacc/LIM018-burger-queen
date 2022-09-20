@@ -9,18 +9,47 @@
     </ul>
   </section>
   <section class="menu-items">
-    <div *ngFor="let item of menu" class="item">
-      <img src="{{item.link}}" alt="">
-      <p class="item-description">{{ item.description }}</p>
-      <p class="item-price">$ {{ item.price }}</p>
+    <div *ngFor="let item of menu">
+      <div class="item" *ngIf="item" (click)="addItem(item)">
+        <img src="{{item.link}}" alt="">
+        <p class="item-description">{{ item.description }}</p>
+        <p class="item-price">$ {{ item.price }}</p>
+      </div>
     </div>
   </section>
   <section class="order-list">
     <div class="order-name">
-      <p>Cliente:</p>
+      <p class="order-description-client">Cliente:</p>
       <div class="order-getname">{{ name }}</div>
     </div>
     <div class="order-items">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Cant</th>
+            <th>Detalle</th>
+            <th>Precio</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <th>1</th>
+            <td>{{item.description}}</td>
+            <td class="price">$ {{item.price}}</td>
+            <td><img src="./assets/img/delete.png"></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <th>Total</th>
+            <th>$ {{ total }}</th>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <button class="btn-send-order">Enviar pedido</button>
     </div>
   </section>
 </div>

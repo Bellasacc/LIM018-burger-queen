@@ -73,3 +73,70 @@
 .item-price {
   color: #B43011;
 }
+
+.order-list {
+  padding: 20px;
+}
+
+.order-name {
+  display: flex;
+  width: 47vw;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #591608;
+}
+
+.order-getname {
+  background: #FF9D84;
+  width: 70%;
+  height: 50px;
+  text-align: center;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.order-items {
+  background: #C5BBB1;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+table {
+  width: 100%;
+  font-size: 18px;
+  border-collapse: collapse;
+  max-width: 0px auto;
+}
+
+table th{
+  padding: 3px 20px;
+  border-bottom: 1px solid #ddd;
+  color: #A7290D;
+}
+table tr{
+  border-bottom: 1px solid #ddd
+}
+
+.price {
+  text-align: center;
+}
+
+.btn-send-order {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 30px;
+  background: #B43011;
+  width: 211px;
+  height: 53px;
+  cursor: pointer;
+}

@@ -14,4 +14,5 @@ export class BurgerService {
     
     return collectionData(collection(this.firestore, nameCollection)) as Observable<Menu[]>;
   }
+
 }

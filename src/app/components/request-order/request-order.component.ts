@@ -13,10 +13,6 @@ export class RequestOrderComponent implements OnInit {
   name: any; 
 
   constructor(private burger: BurgerService, private route: ActivatedRoute) {
-    // this.menu = [{
-    //   description: 'description',
-    //   price: 0,
-    // }]
   }
 
   showMenu(kind: string): void {
@@ -25,15 +21,20 @@ export class RequestOrderComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.burger.getMenu('breakfast').subscribe(menus => {
-      this.menu = menus;
-    }) 
+  items: any[] = [];
+  total: number = 0;
+  addItem(item: object) {
+    this.items.push(item);
+    console.log(this.items);
 
+    this.total = this.items.reduce((a,b) => a+b.price,0)
+  }
+
+  ngOnInit(): void {
+    this.showMenu('breakfast');
     this.route.queryParams.subscribe((params: any) => {
       this.name = params.data;
     })
-    
   }
   
 }
