@@ -87,6 +87,7 @@
   font-size: 24px;
   font-weight: 700;
   color: #591608;
+  margin: 0 0 10px 0;
 }
 
 .order-getname {
@@ -99,17 +100,19 @@
 }
 
 .order-items {
+  max-height: 73.5vh;
   background: #C5BBB1;
   border-radius: 20px;
-  padding: 20px;
+  padding: 20px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  overflow: scroll;
 }
 
 table {
-  width: 100%;
+  width: 90%;
   font-size: 18px;
   border-collapse: collapse;
   max-width: 0px auto;
@@ -138,5 +141,6 @@ table tr{
   background: #B43011;
   width: 211px;
   height: 53px;
+  min-height: 53px;
   cursor: pointer;
 }

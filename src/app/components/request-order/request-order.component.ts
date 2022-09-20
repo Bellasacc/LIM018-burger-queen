@@ -23,11 +23,21 @@ export class RequestOrderComponent implements OnInit {
 
   items: any[] = [];
   total: number = 0;
-  addItem(item: object) {
-    this.items.push(item);
-    console.log(this.items);
-
-    this.total = this.items.reduce((a,b) => a+b.price,0)
+  addItem(item: { description: string, price: number, amount: number, link: string}) {
+    // para verificar si existe en la orden aumentar la cantidad o solo ingresar uno nuevo
+    if (this.items.some((elem) => elem.description === item.description )) {
+      this.items = this.items.map((elem) => {
+        if (elem.description === item.description) {
+           elem.amount += 1;
+           return elem;
+        }
+        return elem;
+      });
+    } else {
+      this.items.push({ ...item, amount: 1 });
+    }
+    // calculamos el precio total de la orden
+    this.total = this.items.reduce((a,b) => a + (b.price * b.amount),0)
   }
 
   ngOnInit(): void {
