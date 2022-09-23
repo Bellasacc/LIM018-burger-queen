@@ -12,6 +12,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { ModalBurgerComponent } from './components/modals/modal-burger/modal-burger.component';
 
 const routes:Routes = [
   {
@@ -35,7 +36,8 @@ const routes:Routes = [
     FooterComponent,
     RequestNameClientComponent,
     NavBarHeaderComponent,
-    RequestOrderComponent
+    RequestOrderComponent,
+    ModalBurgerComponent
   ],
   imports: [
     BrowserModule,

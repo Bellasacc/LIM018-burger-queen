@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BurgerService } from 'src/app/services/burger.service';
 import Menu from '../../interfaces/menu.interface';
+import { ModalBurgerComponent } from '../modals/modal-burger/modal-burger.component';
 @Component({
   selector: 'app-request-order',
   templateUrl: './request-order.component.html',
   styleUrls: ['./request-order.component.css']
 })
+
 export class RequestOrderComponent implements OnInit {
 
   menu: any[] = []; // no es necesario un inicializador
-  name: any; 
-
+  name: any;
+  
   constructor(private burger: BurgerService, private route: ActivatedRoute) {
   }
 
@@ -23,8 +25,36 @@ export class RequestOrderComponent implements OnInit {
 
   items: any[] = [];
   total: number = 0;
-  addItem(item: { description: string, price: number, amount: number, link: string}) {
+  newItem: any;
+ 
+  @ViewChildren('modal') modal!: QueryList<ModalBurgerComponent>; // esto trae el componente de los modales con id
+
+  obtainingData(event:any){
+    this.newItem = event;
+    this.addItem(this.newItem);
+    this.showMenu('burgers');
+  }
+
+  // funcion para preguntar si es hamburguesa o no
+
+  askIfBurger(item: { id: string, description: string, price: number, amount: number}) {
+    if (item.description.startsWith('Hamburguesa')) {
+      //this.modal.nativeElement.showModal();
+      const modalArray = this.modal.toArray();
+      
+      modalArray.forEach(modal => {
+        if(modal.id === item.id){
+          modal.showModal();
+        }
+      })
+    } else {
+      this.addItem(item);
+    }
+  }
+
+  addItem(item: { id: string, description: string, price: number, amount: number}) {
     // para verificar si existe en la orden aumentar la cantidad o solo ingresar uno nuevo
+
     if (this.items.some((elem) => elem.description === item.description )) {
       this.items = this.items.map((elem) => {
         if (elem.description === item.description) {
@@ -40,7 +70,7 @@ export class RequestOrderComponent implements OnInit {
     this.total = this.items.reduce((a,b) => a + (b.price * b.amount), 0);
   }
 
-  onDeleteItem(item: { description: string, price: number, amount: number, link: string }) {
+  onDeleteItem(item: { description: string, price: number, amount: number}) {
     this.items = this.items.map((elem) => {
       if (elem.description === item.description && elem.amount > 0) {
         elem.amount -= 1;

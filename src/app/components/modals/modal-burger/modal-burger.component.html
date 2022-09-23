@@ -1,0 +1,7 @@
+<dialog #modal>
+  <p>{{item.description}}</p>
+  <div *ngFor="let extra of extras">
+    <input type="checkbox" [value]="extra.id" [checked]="extra.select" (change)="onChange($event)" class="check-input">{{ extra.name }}
+  </div>
+  <button (click)="closeModal()">Agregar</button>
+</dialog>

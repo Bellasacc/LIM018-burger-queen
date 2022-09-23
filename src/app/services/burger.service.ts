@@ -12,7 +12,7 @@ export class BurgerService {
 
   getMenu(nameCollection: string): Observable<Menu[]> {
     
-    return collectionData(collection(this.firestore, nameCollection)) as Observable<Menu[]>;
+    return collectionData(collection(this.firestore, nameCollection), {idField: "id"}) as Observable<Menu[]>;
   }
 
 }

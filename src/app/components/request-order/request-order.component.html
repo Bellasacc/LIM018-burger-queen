@@ -10,10 +10,13 @@
   </section>
   <section class="menu-items">
     <div *ngFor="let item of menu">
-      <div class="item" *ngIf="item" (click)="addItem(item)">
+      <div class="item" (click)="askIfBurger(item)">
         <img src="{{item.link}}" alt="">
         <p class="item-description">{{ item.description }}</p>
         <p class="item-price">$ {{ item.price }}</p>
+      </div>
+      <div *ngIf="item.description.startsWith('Hamburguesa')">
+        <app-modal-burger [id]="item.id" (sendItem)="obtainingData($event)" [item]="item" #modal></app-modal-burger>
       </div>
     </div>
   </section>
