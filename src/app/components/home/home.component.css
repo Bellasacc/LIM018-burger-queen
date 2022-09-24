@@ -46,3 +46,7 @@
   height: 150px;
   width: 150px;
 }
+
+a{
+  text-decoration: none;
+}

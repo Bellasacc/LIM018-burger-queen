@@ -132,15 +132,6 @@ table tr{
 }
 
 .btn-send-order {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 30px;
-  background: #B43011;
-  width: 211px;
-  height: 53px;
   min-height: 53px;
-  cursor: pointer;
 }
+

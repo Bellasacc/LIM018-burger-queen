@@ -1,0 +1,24 @@
+<!-- <dialog #modal>
+  <p>{{item.description}}</p>
+  <div *ngFor="let extra of extras">
+    <input type="checkbox" [value]="extra.id" [checked]="extra.select" (change)="onChange($event)" class="check-input">{{ extra.name }}
+  </div>
+  <button (click)="closeModal()">Agregar</button>
+</dialog> -->
+
+<dialog #modal>
+  <div class="dialog">
+    <div class="container-modal">
+      <p>{{ item.description }}</p>
+      <div class="dialog-extras">
+        <div class="container-extra" *ngFor="let extra of extras">
+          <img [src]="extra.img"> 
+          <input type="checkbox" [id]="extra.id" [value]="extra.id" [checked]="extra.select" (change)="onChange($event)"> 
+          <label [for]="extra.id">{{ extra.name }}</label>
+          <span>$ {{ extra.price }}</span>
+        </div>
+      </div>
+      <button class="btn btn-add" (click)="closeModal()">Agregar</button>
+    </div>
+  </div>
+</dialog>

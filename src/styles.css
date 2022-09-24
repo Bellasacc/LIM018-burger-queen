@@ -4,7 +4,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background: #E8E3D9;
   font-family: 'Poppins', sans-serif;
+}
+
+.btn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 30px;
+  background: #B43011;
+  width: 211px;
+  height: 53px;
+  cursor: pointer;
 }
