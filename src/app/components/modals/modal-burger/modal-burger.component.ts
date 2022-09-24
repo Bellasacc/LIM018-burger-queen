@@ -14,19 +14,9 @@ export class ModalBurgerComponent implements OnInit {
 
   @Input() id = ''; // esto lo estamos llamando como atributo en el request
   @Input() item: any;
-  // item1 = {...this.item, extra: 'queso'};
   @Output() sendItem:EventEmitter<any> = new EventEmitter<{}>();
 
   newItem: any;
-
-  // ngOnDestroy(): void {
-  //   this.item.description = this.item.description + 'queso';
-  //   console.log(this.item);
-    
-  //   throw new Error('Method not implemented.');
-  // }
-
-  // public show = false;
 
   @ViewChild('modal') modal!:ElementRef;
 
@@ -43,13 +33,10 @@ export class ModalBurgerComponent implements OnInit {
       }
       return e;
     })
-    console.log(this.extras)
   }
 
   showModal() {
-    
     this.modal.nativeElement.showModal();
-    // this.show = true;
   }
 
   closeModal() {
@@ -63,7 +50,6 @@ export class ModalBurgerComponent implements OnInit {
       }
     })
     this.sendItem.emit(this.newItem);
-    // this.show = false;
   }
 
 }
