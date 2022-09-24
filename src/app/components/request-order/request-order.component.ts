@@ -81,6 +81,24 @@ export class RequestOrderComponent implements OnInit {
     this.total = this.items.reduce((a,b) => a + (b.price * b.amount), 0);
   }
   
+  async sendOrder() {
+    this.items = this.items.map((item) => {
+      const obj = { amount: item.amount, description: item.description, price: item.price };
+      return obj;
+    });
+    const order = {
+      client: this.name,
+      listOrder: this.items,
+      dateCreation: new Date().getTime(),
+      dateFinally: new Date().getTime(),
+      status: 'pendiente',
+      total: this.total
+    }
+    const response = await this.burger.saveOrder(order);
+    console.log(response);
+    
+  }
+
   ngOnInit(): void {
     this.showMenu('breakfast');
     this.route.queryParams.subscribe((params: any) => {
