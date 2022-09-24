@@ -14,10 +14,6 @@ export class RequestOrderComponent implements OnInit {
   menu: any[] = []; // no es necesario un inicializador
   name: any;
   
-  extras: Array<any> = [
-    {name: 'Queso', id: '1', price: 1, select: false, img: 'https://raw.githubusercontent.com/Bellasacc/LIM018-burger-queen/main/src/assets/img/cheese.png'}, 
-    {name: 'Huevo', id: '2', price: 1, select: false, img: 'https://raw.githubusercontent.com/Bellasacc/LIM018-burger-queen/main/src/assets/img/egg.png'}
-  ];
   constructor(private burger: BurgerService, private route: ActivatedRoute) {
   }
 

@@ -8,20 +8,6 @@
       <li class="li-menu-side" (click)="showMenu('drinks')" id="menu-drink">Bebidas</li>
     </ul>
   </section>
-  <div class="container-modal">
-    <dialog open>
-      <p>Hamburguesa de res</p>
-      <div class="dialog-extras">
-        <div class="container-extra" *ngFor="let extra of extras">
-          <img [src]="extra.img"> 
-          <input type="checkbox" [id]="extra.id" [value]="extra.id" [checked]="extra.select"> 
-          <label [for]="extra.id">{{ extra.name }}<br>$ {{ extra.price }}</label>
-          
-        </div>
-      </div>
-    <button class="btn btn-add">Agregar</button>
-    </dialog>
-  </div>
   <section class="menu-items">
     <div *ngFor="let item of menu">
       <div class="item" (click)="askIfBurger(item)">

@@ -20,8 +20,11 @@ export class ModalBurgerComponent implements OnInit {
 
   @ViewChild('modal') modal!:ElementRef;
 
-  extras: Array<any> = [{name: 'queso', id: '1', price: 1, select: false}, {name: 'huevo', id: '2', price: 1, select: false}];
-
+  extras: Array<any> = [
+    {name: 'Queso', id: '1', price: 1, select: false, img: 'https://raw.githubusercontent.com/Bellasacc/LIM018-burger-queen/main/src/assets/img/cheese.png'}, 
+    {name: 'Huevo', id: '2', price: 1, select: false, img: 'https://raw.githubusercontent.com/Bellasacc/LIM018-burger-queen/main/src/assets/img/egg.png'}
+  ];
+  
   onChange(event:any){
     const id = event.target.value;
     const isChecked = event.target.checked;
