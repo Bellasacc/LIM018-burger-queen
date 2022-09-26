@@ -38,3 +38,7 @@ label {
   outline: none;
   border: 2px solid #A7290D;
 }
+
+small {
+  color: red;
+}
