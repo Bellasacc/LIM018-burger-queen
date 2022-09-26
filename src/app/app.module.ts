@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { ModalBurgerComponent } from './components/modals/modal-burger/modal-burger.component';
+import { ModalMessageComponent } from './components/modals/modal-message/modal-message.component';
 
 const routes:Routes = [
   {
@@ -37,7 +38,8 @@ const routes:Routes = [
     RequestNameClientComponent,
     NavBarHeaderComponent,
     RequestOrderComponent,
-    ModalBurgerComponent
+    ModalBurgerComponent,
+    ModalMessageComponent
   ],
   imports: [
     BrowserModule,
