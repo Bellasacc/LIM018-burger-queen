@@ -10,12 +10,17 @@ export class RequestNameClientComponent implements OnInit {
 
   constructor(private route: Router) { }
   
-  name: any;
+  name: string = '';
+  message: string = '';
 
   ngOnInit(): void {
   }
 
   onNext() {
-    this.route.navigate(['/hacer-pedido'], {queryParams: {data: this.name}})
+    if (this.name === '') {
+      this.message = '*Ingresa nombre del cliente';
+    } else {
+      this.route.navigate(['/hacer-pedido'], { queryParams: { data: this.name } });
+    }
   }  
 }

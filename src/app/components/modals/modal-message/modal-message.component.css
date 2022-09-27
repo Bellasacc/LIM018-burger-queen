@@ -1,0 +1,49 @@
+.dialog {
+  background: rgba(197, 187, 177, 0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  padding: 16px;
+  z-index: 9999;
+}
+
+.container-modal {
+  left: 40%;
+  width: 440px;
+  height: 350px;
+  background: #E8E3D9;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+dialog p {
+  color: #591608;
+  text-align: center;
+}
+
+dialog img {
+  width: 120px;
+  height: 120px;
+}
+
+.btn-add {
+  min-height: 50px;
+}

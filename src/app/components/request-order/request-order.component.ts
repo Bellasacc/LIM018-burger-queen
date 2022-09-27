@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BurgerService } from 'src/app/services/burger.service';
 import Menu from '../../interfaces/menu.interface';
 import { ModalBurgerComponent } from '../modals/modal-burger/modal-burger.component';
+import { ModalMessageComponent } from '../modals/modal-message/modal-message.component';
 @Component({
   selector: 'app-request-order',
   templateUrl: './request-order.component.html',
@@ -14,7 +15,7 @@ export class RequestOrderComponent implements OnInit {
   menu: any[] = []; // no es necesario un inicializador
   name: any;
   
-  constructor(private burger: BurgerService, private route: ActivatedRoute) {
+  constructor(private burger: BurgerService, private route: ActivatedRoute, private router: Router) {
   }
 
   showMenu(kind: string): void {
@@ -28,6 +29,7 @@ export class RequestOrderComponent implements OnInit {
   newItem: any;
  
   @ViewChildren('modal') modal!: QueryList<ModalBurgerComponent>; // esto trae el componente de los modales con id
+  @ViewChild('modalMessage') modalMessage: ModalMessageComponent = new ModalMessageComponent();
 
   obtainingData(event:any){
     this.newItem = event;
@@ -96,7 +98,35 @@ export class RequestOrderComponent implements OnInit {
     }
     const response = await this.burger.saveOrder(order);
     console.log(response);
-    
+    this.router.navigate(['/ingresar-nombre']);
+  }
+
+  public message = {
+    alert: {
+      content: 'No has ingresado nada en la orden',
+      img: './assets/img/warning.png'
+    },
+    success: {
+      content: '¡Envío de pedido exitoso!',
+      img: './assets/img/check.png'
+    }
+  };
+  objectMessage = { content: '', img: ''};
+
+  showModalMessage() {
+    if (this.items.length === 0) {
+      this.objectMessage = this.message.alert;
+      this.modalMessage.showModal();
+    } else {
+      this.objectMessage = this.message.success;
+      this.modalMessage.showModal();
+    }
+  }
+
+  obtainingReply(reply: boolean) {
+    if (reply) {
+      this.sendOrder();
+    }
   }
 
   ngOnInit(): void {

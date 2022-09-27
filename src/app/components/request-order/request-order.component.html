@@ -52,7 +52,8 @@
           </tr>
         </tfoot>
       </table>
-      <button class="btn btn-send-order" (click)="sendOrder()">Enviar pedido</button>
+      <button class="btn btn-send-order" (click)="showModalMessage()">Enviar pedido</button>
+      <app-modal-message [message]="objectMessage" (sendReply)="obtainingReply($event)" #modalMessage></app-modal-message>
     </div>
   </section>
 </div>
