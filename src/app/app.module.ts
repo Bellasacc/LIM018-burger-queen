@@ -14,6 +14,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { ModalBurgerComponent } from './components/modals/modal-burger/modal-burger.component';
 import { ModalMessageComponent } from './components/modals/modal-message/modal-message.component';
+import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
 
 const routes:Routes = [
   {
@@ -28,6 +29,10 @@ const routes:Routes = [
     path: 'hacer-pedido', 
     component: RequestOrderComponent
   },
+  {
+    path: 'ver-pedidos',
+    component: ViewOrdersComponent
+  }
 ]
 
 @NgModule({
@@ -39,7 +44,8 @@ const routes:Routes = [
     NavBarHeaderComponent,
     RequestOrderComponent,
     ModalBurgerComponent,
-    ModalMessageComponent
+    ModalMessageComponent,
+    ViewOrdersComponent
   ],
   imports: [
     BrowserModule,
