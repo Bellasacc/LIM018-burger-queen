@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalBurgerComponent } from './components/modals/modal-burger/modal-burger.component';
 import { ModalMessageComponent } from './components/modals/modal-message/modal-message.component';
 import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
+import { KitchenOrdersComponent } from './components/kitchen-orders/kitchen-orders.component';
 
 const routes:Routes = [
   {
@@ -32,6 +33,10 @@ const routes:Routes = [
   {
     path: 'ver-pedidos',
     component: ViewOrdersComponent
+  },
+  {
+    path: 'cocina',
+    component: KitchenOrdersComponent
   }
 ]
 
@@ -45,7 +50,8 @@ const routes:Routes = [
     RequestOrderComponent,
     ModalBurgerComponent,
     ModalMessageComponent,
-    ViewOrdersComponent
+    ViewOrdersComponent,
+    KitchenOrdersComponent
   ],
   imports: [
     BrowserModule,

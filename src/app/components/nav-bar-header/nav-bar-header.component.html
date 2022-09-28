@@ -2,10 +2,10 @@
   <nav class="navbar">
     <p class="navbar-logo">Logo</p>
     <ul>
-      <li>
+      <li [ngStyle]="{'display':route=== '/cocina' ? 'none' : 'block' }">
         <a href="/ingresar-nombre">Hacer pedido</a>
       </li>
-      <li>
+      <li [ngStyle]="{'display':route=== '/cocina' ? 'none' : 'block' }">
         <a href="/ver-pedidos">Ver Pedidos</a>
       </li>
       <li>

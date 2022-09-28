@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar-header',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  route: string = this.router.url; // Acá obtenemos la ruta activa/actual 
 
   ngOnInit(): void {
   }
