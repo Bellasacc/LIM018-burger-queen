@@ -1,15 +1,16 @@
 <app-nav-bar-header></app-nav-bar-header>
 <div class="container-kitchen-orders">
   <section class="status-side">
-    <ul class="ul-status-side">
-      <li class="li-status-side" (click)="showStatus('pending')" id="status-pending">Pendiente</li>
-      <li class="li-status-side" (click)="showStatus('ready')" id="status-ready">Servido</li>
+    <ul class="ul-status-side" #liElements>
+      <li class="li-status-side active" #pending (click)="showStatus('pendiente')" id="status-pending" [class.active-status-side]="liElement === 'Pendiente'">Pendiente</li>
+      <li class="li-status-side" (click)="showStatus('listo')" id="status-ready" [class.active-status-side]="liElement === 'Servido'">Servido</li>
     </ul>
   </section>
   <section class="view-orders">
     <div class="box-order" *ngFor="let order of orders">
-      <div class="title-status">
+      <div class="title-status" [class.order-ready]="liElement === 'Servido'">
         <p>{{order.status.toUpperCase()}}</p>
+        <p *ngIf="liElement === 'Servido'">{{ order.time }}</p>
       </div>
       <div class="info-order">
         <div class="info-1">
@@ -31,7 +32,7 @@
           </table>
         </div>
         <div class="info-2">
-          <button class="btn">Servir</button>
+          <button [ngStyle]="{'display':liElement === 'Servido' ? 'none' : 'block' }" class="btn" (click)="updateOrder(order.id, order.dateCreation)">Servir</button>
         </div>
       </div>
     </div>
