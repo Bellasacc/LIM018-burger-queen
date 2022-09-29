@@ -35,7 +35,6 @@
 
 #status-pending {
   background-color: #F12F25;
-  width: 80%;
 }
 
 #status-ready {
@@ -85,22 +84,9 @@ span {
 }
 
 .info-1 {
-  /* height: 80%; */
   flex: 1 0 auto;
   
 }
-
-/* .order-items {
-  max-height: 73.5vh;
-  background: #C5BBB1;
-  border-radius: 20px;
-  padding: 20px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  overflow: scroll;
-} */
 
 table {
   width: 100%;
@@ -124,7 +110,6 @@ table td {
 }
 
 .info-2 {
-  /* height: 20%; */
   flex: 0 0 auto;
 }
 
@@ -133,3 +118,16 @@ button {
   border-radius: 15px;
 }
 
+.active-status-side {
+  width: 80%;
+}
+
+.active {
+  width: 80%;
+}
+.order-ready {
+  display: flex;
+  justify-content: space-between;
+  background: #B6ADA4;
+  color: #591608;
+}
