@@ -1,0 +1,40 @@
+<app-nav-bar-header></app-nav-bar-header>
+<div class="container-kitchen-orders">
+  <section class="status-side">
+    <ul class="ul-status-side">
+      <li class="li-status-side" (click)="showStatus('pending')" id="status-pending">Pendiente</li>
+      <li class="li-status-side" (click)="showStatus('ready')" id="status-ready">Servido</li>
+    </ul>
+  </section>
+  <section class="view-orders">
+    <div class="box-order" *ngFor="let order of orders">
+      <div class="title-status">
+        <p>{{order.status.toUpperCase()}}</p>
+      </div>
+      <div class="info-order">
+        <div class="info-1">
+          <p><span>Cliente: </span> {{order.client}}</p>
+          <span>Pedido:</span>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Cant</th>
+                <th>Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detail of order.listOrder">
+                <th>{{ detail.amount }}</th>
+                <td>{{ detail.description }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-2">
+          <button class="btn">Servir</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

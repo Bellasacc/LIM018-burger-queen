@@ -1,0 +1,25 @@
+<app-nav-bar-header></app-nav-bar-header>
+<div class="container-orders">
+  <section class="status-side">
+    <ul class="ul-status-side">
+      <li class="li-status-side" (click)="showStatus('pending')" id="status-pending">Pendiente</li>
+      <li class="li-status-side" (click)="showStatus('ready')" id="status-ready">Listo</li>
+      <li class="li-status-side" (click)="showStatus('delivered')" id="status-delivered">Entregado</li>
+    </ul>
+  </section>
+  <section class="view-orders">
+    <div>
+      <div>
+        <div class="title-status">
+          <p></p>
+        </div>
+        <div class="info-order">
+          <p>Cliente</p>
+          <p>Pedido</p>
+          <p></p> <!-- Acá irá un ngfor para mostrar el detalle y cantidad de los pedidos-->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

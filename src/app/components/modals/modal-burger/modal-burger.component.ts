@@ -13,7 +13,7 @@ export class ModalBurgerComponent implements OnInit {
   }
 
   @Input() id = ''; // esto lo estamos llamando como atributo en el request
-  @Input() item: any;
+  @Input() item = {description: ''};
   @Output() sendItem:EventEmitter<any> = new EventEmitter<{}>();
 
   newItem: any;
@@ -54,5 +54,5 @@ export class ModalBurgerComponent implements OnInit {
     })
     this.sendItem.emit(this.newItem);
   }
-
+  
 }
