@@ -26,9 +26,9 @@ export class BurgerService {
     return collectionData(q, {idField: 'id'}) as Observable<[]>;
   }
 
-  changeStatus(id: string, status: string, dateFinally: number, time: string) {
+  changeStatus(id: string, status: string, dateFinally: Date, time: number, timeString: string) {
     const orderPendingRef = doc(this.firestore, 'Orders', id);
-    return updateDoc(orderPendingRef, { status, dateFinally , time});
+    return updateDoc(orderPendingRef, { status, dateFinally , time, timeString});
   }
 
 }
