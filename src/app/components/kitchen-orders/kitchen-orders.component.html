@@ -10,7 +10,7 @@
     <div class="box-order" *ngFor="let order of orders">
       <div class="title-status" [class.order-ready]="liElement === 'Servido'">
         <p>{{order.status.toUpperCase()}}</p>
-        <p *ngIf="liElement === 'Servido'">{{ order.time }}</p>
+        <p *ngIf="liElement === 'Servido'">{{ order.timeString }}</p>
       </div>
       <div class="info-order">
         <div class="info-1">

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { Timestamp } from '@angular/fire/firestore';
 import { BurgerService } from 'src/app/services/burger.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class KitchenOrdersComponent implements OnInit {
   constructor(private burgerService: BurgerService, private renderer: Renderer2) { }
 
   orders:any[] = [];
-  time: number = 0;
+  timeString: string = '';
 
   @ViewChild('liElements') liElements!: ElementRef;
   @ViewChild('pending') pending!: ElementRef;
@@ -25,18 +26,29 @@ export class KitchenOrdersComponent implements OnInit {
     });
   }
 
-  async updateOrder(id: string, dateCreation: number) {
-    const dateFinally = new Date().getTime();
-    // falta verificar el tiempo
-    const date = new Date(dateFinally - dateCreation);
-    const time = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
-    await this.burgerService.changeStatus(id, 'listo', dateFinally, time);
+  async updateOrder(id: string, dateCreation: Timestamp) {
+    const dateFinally = new Date();
+    const date = dateCreation.toDate();
+    const finish = Date.UTC(dateFinally.getFullYear(), dateFinally.getMonth(), dateFinally.getDate(), dateFinally.getHours(), dateFinally.getMinutes(), dateFinally.getSeconds());
+    const start = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
+    const time = ((finish - start) / (1000));
+    console.log(time);
+    
+    let hour: string | number = Math.floor(time / 3600);
+    hour = (hour < 10)? '0' + hour : hour;
+    let minute: string | number =  Math.floor((time / 60) % 60);
+    minute = (minute < 10)? '0' + minute : minute;
+    let second: string | number = time % 60;
+    second = (second < 10)? '0' + second : second;
+    this.timeString = hour + ':' + minute + ':' + second;
+    
+    await this.burgerService.changeStatus(id, 'listo', dateFinally, time, this.timeString);
     // se carga nuevamente los pendientes en la vista
     this.showStatus('pendiente');
   }
 
   ngOnInit(): void {
-    this.showStatus('pendiente');
+    this.showStatus('pendiente');    
   }
 
   ngAfterViewInit(): void {
