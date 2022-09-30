@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BurgerService } from 'src/app/services/burger.service';
 import Menu from '../../interfaces/menu.interface';
 import { ModalBurgerComponent } from '../modals/modal-burger/modal-burger.component';
@@ -18,7 +18,7 @@ export class RequestOrderComponent implements OnInit {
   constructor(private burger: BurgerService, private route: ActivatedRoute, private router: Router) {
   }
 
-  showMenu(kind: string): void {
+  showMenu(kind: string) {
     this.burger.getMenu(kind).subscribe(menus => {
       this.menu = menus;
     })
@@ -131,8 +131,8 @@ export class RequestOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.showMenu('breakfast');
-    this.route.queryParams.subscribe((params: any) => {
-      this.name = params.data;
+    this.route.queryParams.subscribe((params: Params) => {
+      this.name = params['data'];
     })
 
   }
