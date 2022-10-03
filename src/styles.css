@@ -21,4 +21,5 @@ body {
   width: 211px;
   height: 53px;
   cursor: pointer;
+  display: block;
 }

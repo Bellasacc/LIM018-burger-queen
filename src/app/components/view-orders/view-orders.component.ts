@@ -16,7 +16,7 @@ export class ViewOrdersComponent implements OnInit {
   @ViewChild('liElements') liElements!: ElementRef;
   @ViewChild('pending') pending!: ElementRef;
 
-  liElement: string = '';
+  liElement: string = 'Pendiente'; // se tiene que inicializar para que el btn Entregar solo aparezca en LISTO
 
   showStatus(status:string) {
     this.burgerService.getOrders(status).subscribe(order => {

@@ -140,3 +140,7 @@ button {
   background: #B6ADA4;
   color: #591608;
 }
+
+.hidden {
+  display: none;
+}

@@ -32,7 +32,7 @@
           </table>
         </div>
         <div class="info-2">
-          <button [ngStyle]="{'display':liElement === 'Entregado' || liElement === 'Pendiente' ? 'none' : 'block' }" class="btn" (click)="updateOrder(order.id)">Entregar</button>
+          <button class="btn" [class.hidden]="liElement === 'Pendiente' || liElement === 'Entregado'" (click)="updateOrder(order.id)">Entregar</button>
         </div>
       </div>
     </div>
