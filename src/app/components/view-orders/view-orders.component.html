@@ -1,22 +1,38 @@
 <app-nav-bar-header></app-nav-bar-header>
 <div class="container-orders">
   <section class="status-side">
-    <ul class="ul-status-side">
-      <li class="li-status-side" (click)="showStatus('pending')" id="status-pending">Pendiente</li>
-      <li class="li-status-side" (click)="showStatus('ready')" id="status-ready">Listo</li>
-      <li class="li-status-side" (click)="showStatus('delivered')" id="status-delivered">Entregado</li>
+    <ul class="ul-status-side" #liElements>
+      <li class="li-status-side active" #pending (click)="showStatus('pendiente')" id="status-pending" [class.active-status-side]="liElement === 'Pendiente'">Pendiente</li>
+      <li class="li-status-side" (click)="showStatus('listo')" id="status-ready" [class.active-status-side]="liElement === 'Listo'">Listo</li>
+      <li class="li-status-side" (click)="showStatus('entregado')" id="status-delivered" [class.active-status-side]="liElement === 'Entregado'">Entregado</li>
     </ul>
   </section>
   <section class="view-orders">
-    <div>
-      <div>
-        <div class="title-status">
-          <p></p>
+    <div class="box-order" *ngFor="let order of orders">
+      <div class="title-status" [class.order-ready]="liElement === 'Listo'" [class.order-delivered]="liElement === 'Entregado'">
+        <p>{{order.status.toUpperCase()}}</p>
+      </div>
+      <div class="info-order">
+        <div class="info-1">
+          <p><span>Cliente: </span> {{order.client}}</p>
+          <span>Pedido:</span>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Cant</th>
+                <th>Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detail of order.listOrder">
+                <th>{{ detail.amount }}</th>
+                <td>{{ detail.description }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="info-order">
-          <p>Cliente</p>
-          <p>Pedido</p>
-          <p></p> <!-- Acá irá un ngfor para mostrar el detalle y cantidad de los pedidos-->
+        <div class="info-2">
+          <button class="btn" [class.hidden]="liElement === 'Pendiente' || liElement === 'Entregado'" (click)="updateOrder(order.id)">Entregar</button>
         </div>
       </div>
     </div>

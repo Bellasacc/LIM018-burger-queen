@@ -25,12 +25,19 @@
   writing-mode: vertical-lr;
   list-style: none;
   background: #FFA10D;
-  width: 100%;
+  width: 80%;
   height: 155px;
   font-size: 24px;
   font-weight: 700;
-  border-radius: 0 20px 20px 0;
+  border-radius: 20px 0px 0px 20px;
   cursor: pointer;
+  transform: rotate(180deg);
+}
+
+.active {
+  width: 100%;
+  color: #FFF;
+  background: #591608;
 }
 
 .desayuno, .hamburguesas{

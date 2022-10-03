@@ -42,7 +42,7 @@ export class KitchenOrdersComponent implements OnInit {
     second = (second < 10)? '0' + second : second;
     this.timeString = hour + ':' + minute + ':' + second;
     
-    await this.burgerService.changeStatus(id, 'listo', dateFinally, time, this.timeString);
+    await this.burgerService.changeStatus(id, { status: 'listo', dateFinally, time: time, timeString: this.timeString});
     // se carga nuevamente los pendientes en la vista
     this.showStatus('pendiente');
   }

@@ -17,6 +17,14 @@
   margin: 0 50px;
 }
 
+.logo {
+  display: flex;
+  gap: 10px;
+  font-weight: 900;
+  color: #FFA10D;
+  width: 250px;
+}
+
 ul {
   display: flex;
   gap: 50px;
@@ -29,4 +37,8 @@ li {
 a {
   text-decoration: none;
   color: white;
+}
+
+.active {
+  border-bottom: 4px solid #FFA10D;
 }
