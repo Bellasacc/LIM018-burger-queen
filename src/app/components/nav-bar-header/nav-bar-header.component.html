@@ -6,10 +6,10 @@
     </div>
     <ul>
       <li [ngStyle]="{'display':route=== '/cocina' ? 'none' : 'block' }">
-        <a href="/ingresar-nombre">Hacer pedido</a>
+        <a href="/ingresar-nombre" [class.active]="route.startsWith('/hacer-pedido') || route === '/ingresar-nombre'">Hacer pedido</a>
       </li>
       <li [ngStyle]="{'display':route=== '/cocina' ? 'none' : 'block' }">
-        <a href="/ver-pedidos">Ver Pedidos</a>
+        <a href="/ver-pedidos" [class.active]="route === '/ver-pedidos'">Ver Pedidos</a>
       </li>
       <li>
         <a href="">Salir</a>
