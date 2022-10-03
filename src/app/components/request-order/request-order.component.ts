@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BurgerService } from 'src/app/services/burger.service';
 import Menu from '../../interfaces/menu.interface';
@@ -15,7 +15,7 @@ export class RequestOrderComponent implements OnInit {
   menu: any[] = []; // no es necesario un inicializador
   name: any;
   
-  constructor(private burger: BurgerService, private route: ActivatedRoute, private router: Router) {
+  constructor(private burger: BurgerService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
   }
 
   showMenu(kind: string) {
@@ -30,6 +30,10 @@ export class RequestOrderComponent implements OnInit {
  
   @ViewChildren('modal') modal!: QueryList<ModalBurgerComponent>; // esto trae el componente de los modales con id
   @ViewChild('modalMessage') modalMessage: ModalMessageComponent = new ModalMessageComponent();
+  @ViewChild('liElements') liElements!: ElementRef;
+  @ViewChild('breakfast') breakfast!: ElementRef;
+
+  liElement: string = 'Desayuno';
 
   obtainingData(event:any){
     this.newItem = event;
@@ -134,7 +138,17 @@ export class RequestOrderComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       this.name = params['data'];
     })
+  }
 
+  ngAfterViewInit(): void {
+    // el evento listen funciona como un addenventlistener, el primer parametro el elemento del dom para limitar el target
+    // para inicializar el nativeElement usamos el ngAfterViewInit
+    this.renderer.listen(this.liElements.nativeElement, 'click', event => {
+      this.liElement = event.target.textContent;
+      // if (this.liElement === 'Listo' || this.liElement === 'Entregado') {
+      //   this.renderer.removeClass(this.breakfast.nativeElement, 'active');
+      // }
+    });
   }
   
 }
