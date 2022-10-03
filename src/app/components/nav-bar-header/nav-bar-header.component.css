@@ -17,6 +17,13 @@
   margin: 0 50px;
 }
 
+.logo {
+  display: flex;
+  gap: 10px;
+  font-weight: 900;
+  color: #FFA10D;
+}
+
 ul {
   display: flex;
   gap: 50px;
