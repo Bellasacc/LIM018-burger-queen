@@ -40,7 +40,7 @@ export class ViewOrdersComponent implements OnInit {
     // para inicializar el nativeElement usamos el ngAfterViewInit
     this.renderer.listen(this.liElements.nativeElement, 'click', event => {
       this.liElement = event.target.textContent;
-      if (this.liElement === 'Listo' || this.liElement === 'Entregado') {
+      if (this.liElement !== 'Pendiente') {
         this.renderer.removeClass(this.pending.nativeElement, 'active');
       }
     });
