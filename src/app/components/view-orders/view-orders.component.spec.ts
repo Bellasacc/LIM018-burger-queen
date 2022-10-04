@@ -35,14 +35,15 @@ describe('ViewOrdersComponent', () => {
     btn.dispatchEvent(new Event('click'));
     tick();
     fixture.detectChanges();
+    expect(btn).toBeTruthy();
   }));
+
   it('Cuando haga click deberia remover la clase active', fakeAsync(() => {
     component.ngAfterViewInit();
     let ul = fixture.debugElement.query(By.css('ul')).nativeElement;
     let liPending = fixture.debugElement.query(By.css('li[id="status-pending"]')).nativeElement;
     const event = new Event('click');
-    ul.dispatchEvent(event)
-
+    ul.dispatchEvent(event);
     tick();
     fixture.detectChanges();
     const classLiPending = liPending.getAttribute('class');
