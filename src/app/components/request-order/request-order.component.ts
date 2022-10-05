@@ -41,6 +41,7 @@ export class RequestOrderComponent implements OnInit {
   // funcion para preguntar si es hamburguesa o no
 
   askIfBurger(item: { id: string, description: string, price: number, amount: number}) {
+
     if (item.description.startsWith('Hamburguesa')) {
       //this.modal.nativeElement.showModal();
       const modalArray = this.modal.toArray();

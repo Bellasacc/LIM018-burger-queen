@@ -15,10 +15,12 @@ describe('RequestOrderComponent', () => {
   };
   const serviceStub = {
     getMenu: () => {
-      const todos = [{id: '1', description: '', price: 5}];
+      const todos = [{id: '1', description: '', price: 5}, { id: '2', description: '', price: 5 }];
       return of(todos);
     }
   };
+  const modal = { showModal: () => {} }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RequestOrderComponent ],
@@ -30,16 +32,11 @@ describe('RequestOrderComponent', () => {
     fixture = TestBed.createComponent(RequestOrderComponent);
     component = fixture.componentInstance;
     
-    spyOn(serviceStub, 'getMenu').and.returnValue(of([{ id: '1', description: '', price: 5 }]));
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('verificar llamada de la funcion getMenu', () => {
-    expect(serviceStub.getMenu).toHaveBeenCalled();
   });
 
   describe('addItem', () => {
@@ -86,19 +83,41 @@ describe('RequestOrderComponent', () => {
       expect(component.total).toBe(20);
     }));
 
-    // it('debería añadir items al array del pedido', fakeAsync(() => {
-    //   let item = { id: '1', description: 'Jugo de frutas', price: 10, amount: 0}
-    //   let item2 = { id: '2', description: 'Cafe con leche', price: 10, amount: 0}
-    //   component.addItem(item);    
-    //   fixture.detectChanges();
-    //   tick();
-    //   component.addItem(item);
-    //   component.addItem(item2);
-    //   component.addItem(item);
-    //   expect(component.items[0].amount).toBe(3);
-    //   expect(component.items[1].amount).toBe(1);
-    //   expect(component.total).toBe(40);
-    // }));
+  });
+
+  describe('askIfBurger', () => {
+
+    it('debería mostrar modal de opciones si el pedido es una hamburguesa', fakeAsync(() => {
+      serviceStub.getMenu = jasmine.createSpy().and.returnValue(of([{ id: '1', description: 'Hamburguesa simple de pollo', price: 5 }, { id: '2', description: 'Hamburguesa doble de pollo', price: 5 }]));
+      component.ngOnInit();
+      fixture.detectChanges();
+      tick();
+      let divItem = fixture.debugElement.query(By.css('div[class="item"]')).nativeElement;
+      component.modal.toArray()[0].showModal = modal.showModal;
+      component.modal.toArray()[0].id = '1';
+      
+      fixture.detectChanges();
+      tick();
+
+      expect(serviceStub.getMenu).toHaveBeenCalled();
+      
+      divItem.dispatchEvent(new Event('click'));
+      fixture.detectChanges();
+      tick();
+      expect(component.modal.toArray()[0].showModal).toBeTruthy();
+      
+    }));
+
+    it('debería añadir el item a la lista de pedidos si no es hamburguesa', fakeAsync(() => {
+      serviceStub.getMenu = jasmine.createSpy().and.returnValue(of([{ id: '1', description: 'Jugo de frutas', price: 5 }]));
+      component.ngOnInit();
+      fixture.detectChanges();
+      tick();
+      let divItem = fixture.debugElement.query(By.css('div[class="item"]')).nativeElement;
+  
+      divItem.dispatchEvent(new Event('click'));
+      expect(serviceStub.getMenu).toHaveBeenCalled();
+    }));
 
   });
   
