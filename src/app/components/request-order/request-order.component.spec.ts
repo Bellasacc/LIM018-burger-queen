@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
@@ -20,6 +21,7 @@ describe('RequestOrderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RequestOrderComponent ],
+      schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [{ provide: BurgerService, useValue: serviceStub }, { provide: ActivatedRoute, useValue: fakeActivatedRoute }],
     })
     .compileComponents();

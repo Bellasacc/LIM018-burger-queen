@@ -91,8 +91,8 @@ export class RequestOrderComponent implements OnInit {
     const order = {
       client: this.name,
       listOrder: this.items,
-      dateCreation: new Date(),
-      dateFinally: new Date(),
+      dateCreation: Date.now(),
+      dateFinally: Date.now(),
       status: 'pendiente',
       total: this.total
     }
