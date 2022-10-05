@@ -26,14 +26,15 @@ export class KitchenOrdersComponent implements OnInit {
     });
   }
 
-  async updateOrder(id: string, dateCreation: Timestamp) {
-    const dateFinally = new Date();
-    const date = dateCreation.toDate();
-    const finish = Date.UTC(dateFinally.getFullYear(), dateFinally.getMonth(), dateFinally.getDate(), dateFinally.getHours(), dateFinally.getMinutes(), dateFinally.getSeconds());
+  async updateOrder(id: string, dateCreation: number) {
+    const dateFinally =  Date.now(); // fecha actual en numeros
+    const dateEnd = new Date(dateFinally); // convirtiendo a fecha tipo date    
+    const date = new Date(dateCreation);// convirtiendo a fecha tipo date   
+
+    const finish = Date.UTC(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate(), dateEnd.getHours(), dateEnd.getMinutes(), dateEnd.getSeconds());
     const start = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
     const time = ((finish - start) / (1000));
-    console.log(time);
-    
+
     let hour: string | number = Math.floor(time / 3600);
     hour = (hour < 10)? '0' + hour : hour;
     let minute: string | number =  Math.floor((time / 60) % 60);
@@ -56,7 +57,8 @@ export class KitchenOrdersComponent implements OnInit {
     // para inicializar el nativeElement usamos el ngAfterViewInit
     this.renderer.listen(this.liElements.nativeElement, 'click', event => {
       this.liElement = event.target.textContent;
-      if (this.liElement === 'Servido') {
+      console.log(this.liElement);
+      if (this.liElement !== 'Pendiente') {
         this.renderer.removeClass(this.pending.nativeElement, 'active');
       }
     });

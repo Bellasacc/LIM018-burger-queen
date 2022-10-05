@@ -2,8 +2,8 @@ export default interface Order {
     id?: string;
     client: string;
     listOrder: Array<{}>;
-    dateCreation: Date;
-    dateFinally: Date;
+    dateCreation: number;
+    dateFinally: number;
     status: string;
     total: number;
 }
