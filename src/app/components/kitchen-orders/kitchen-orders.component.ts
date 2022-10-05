@@ -28,6 +28,7 @@ export class KitchenOrdersComponent implements OnInit {
 
   async updateOrder(id: string, dateCreation: Timestamp) {
     const dateFinally = new Date();
+    console.log(dateCreation)
     const date = dateCreation.toDate();
     const finish = Date.UTC(dateFinally.getFullYear(), dateFinally.getMonth(), dateFinally.getDate(), dateFinally.getHours(), dateFinally.getMinutes(), dateFinally.getSeconds());
     const start = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
