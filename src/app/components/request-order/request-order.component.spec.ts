@@ -17,7 +17,8 @@ describe('RequestOrderComponent', () => {
     getMenu: () => {
       const todos = [{id: '1', description: '', price: 5}, { id: '2', description: '', price: 5 }];
       return of(todos);
-    }
+    },
+    saveOrder: () => {}
   };
   const modal = { showModal: () => {} }
 
@@ -121,5 +122,32 @@ describe('RequestOrderComponent', () => {
 
   });
   
+  describe('showModalMessage', () => {
+
+    it('debería mostrar el modal con el mensaje de alerta "No has ingresado nada en la orden"', fakeAsync(() => {
+      let btn = fixture.debugElement.query(By.css('button')).nativeElement;
+      
+      component.modalMessage.showModal = modal.showModal;
+      btn.dispatchEvent(new Event('click'));
+      fixture.detectChanges();
+      tick();
+      component.modalMessage.message = { content: 'No has ingresado nada en la orden', img: './assets/img/warning.png'};
+
+      expect(component.modalMessage.message.content).toBe('No has ingresado nada en la orden');
+    }));
+
+    it('debería mostrar el modal con el mensaje de alerta "¡Envío de pedido exitoso!"', fakeAsync(() => {
+      let btn = fixture.debugElement.query(By.css('button')).nativeElement;
+      component.items = [{ id: '1', description: 'Jugo de frutas', price: 5 }]
+      component.modalMessage.showModal = modal.showModal;
+      btn.dispatchEvent(new Event('click'));
+      fixture.detectChanges();
+      tick();
+      component.modalMessage.message = { content: '¡Envío de pedido exitoso!', img: './assets/img/warning.png'};
+
+      expect(component.modalMessage.message.content).toBe('¡Envío de pedido exitoso!');
+    }));
+
+  });
   
 });

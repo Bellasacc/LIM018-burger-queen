@@ -118,6 +118,7 @@ export class RequestOrderComponent implements OnInit {
     if (this.items.length === 0) {
       this.objectMessage = this.message.alert;
       this.modalMessage.showModal();
+      console.log(this.modalMessage);
     } else {
       this.objectMessage = this.message.success;
       this.modalMessage.showModal();
