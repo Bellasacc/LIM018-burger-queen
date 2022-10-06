@@ -8,9 +8,11 @@ import { RequestNameClientComponent } from './components/request-name-client/req
 import { NavBarHeaderComponent } from './components/nav-bar-header/nav-bar-header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RequestOrderComponent } from './components/request-order/request-order.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+// import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule } from '@angular/forms';
 import { ModalBurgerComponent } from './components/modals/modal-burger/modal-burger.component';
 import { ModalMessageComponent } from './components/modals/modal-message/modal-message.component';
@@ -56,8 +58,10 @@ const routes:Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
+    /* provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()), */
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     FormsModule
   ],
   providers: [],
