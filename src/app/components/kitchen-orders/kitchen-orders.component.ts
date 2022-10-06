@@ -26,6 +26,19 @@ export class KitchenOrdersComponent implements OnInit {
     });
   }
 
+  formatTime(time: number) {
+    let hour: string | number = Math.floor(time / 3600);
+    hour = (hour < 10)? '0' + hour : hour;
+
+    let minute: string | number =  Math.floor((time / 60) % 60);
+    minute = (minute < 10)? '0' + minute : minute;
+
+    let second: string | number = time % 60;
+    second = (second < 10)? '0' + second : second;
+    
+    return hour + ':' + minute + ':' + second;
+  }
+
   async updateOrder(id: string, dateCreation: number) {
     const dateFinally =  Date.now(); // fecha actual en numeros
     const dateEnd = new Date(dateFinally); // convirtiendo a fecha tipo date    
@@ -35,13 +48,7 @@ export class KitchenOrdersComponent implements OnInit {
     const start = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
     const time = ((finish - start) / (1000));
 
-    let hour: string | number = Math.floor(time / 3600);
-    hour = (hour < 10)? '0' + hour : hour;
-    let minute: string | number =  Math.floor((time / 60) % 60);
-    minute = (minute < 10)? '0' + minute : minute;
-    let second: string | number = time % 60;
-    second = (second < 10)? '0' + second : second;
-    this.timeString = hour + ':' + minute + ':' + second;
+    this.timeString = this.formatTime(time);
     
     await this.burgerService.changeStatus(id, { status: 'listo', dateFinally, time: time, timeString: this.timeString});
     // se carga nuevamente los pendientes en la vista
@@ -57,7 +64,6 @@ export class KitchenOrdersComponent implements OnInit {
     // para inicializar el nativeElement usamos el ngAfterViewInit
     this.renderer.listen(this.liElements.nativeElement, 'click', event => {
       this.liElement = event.target.textContent;
-      console.log(this.liElement);
       if (this.liElement !== 'Pendiente') {
         this.renderer.removeClass(this.pending.nativeElement, 'active');
       }
