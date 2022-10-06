@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { BurgerService } from 'src/app/services/burger.service';
 
@@ -13,6 +13,9 @@ describe('RequestOrderComponent', () => {
   let fakeActivatedRoute = {
     queryParams: of({ data: '123' }),
   };
+  let fakeRoute = {
+    navigate: () => {}
+  }
   const serviceStub = {
     getMenu: () => {
       const todos = [{id: '1', description: '', price: 5}, { id: '2', description: '', price: 5 }];
@@ -26,7 +29,7 @@ describe('RequestOrderComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ RequestOrderComponent ],
       schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [{ provide: BurgerService, useValue: serviceStub }, { provide: ActivatedRoute, useValue: fakeActivatedRoute }],
+      providers: [{ provide: BurgerService, useValue: serviceStub }, { provide: ActivatedRoute, useValue: fakeActivatedRoute }, { provide: Router, useValue: fakeRoute}],
     })
     .compileComponents();
 
@@ -149,5 +152,39 @@ describe('RequestOrderComponent', () => {
     }));
 
   });
+
+  describe('obtainingReply', () => {
+
+    it('debería llamar a la función saveOrder', fakeAsync(() => {
+      serviceStub.saveOrder = jasmine.createSpy().and.returnValue(of({}));
+      component.items = [{ id: '1', description: 'Jugo de frutas', price: 5, amount: 2 }]
+      component.obtainingReply(true);
+      expect(serviceStub.saveOrder).toHaveBeenCalled();
+    }));
+
+  });
+
+  describe('obtainingData', () => {
+
+    it('debería llamar a la función addItem', fakeAsync(() => {
+      let item = { id: '1', description: 'Jugo de frutas', price: 10, amount: 1};
+      component.obtainingData(item);
+      
+      expect(component.addItem).toBeTruthy();
+    }));
+
+  });
+
+  it('Cuando haga click deberia remover la clase active', fakeAsync(() => {
+    component.ngAfterViewInit();
+    let ul = fixture.debugElement.query(By.css('ul')).nativeElement;
+    let liBurgers = fixture.debugElement.query(By.css('li[id="menu-burger"]')).nativeElement;
+    const event = new Event('click');
+    ul.dispatchEvent(event);
+    tick();
+    fixture.detectChanges();
+    const classLiBurgers = liBurgers.getAttribute('class');
+    expect(classLiBurgers).not.toContain('active');
+  }));
   
 });
