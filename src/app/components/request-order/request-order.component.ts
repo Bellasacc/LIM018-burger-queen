@@ -41,6 +41,7 @@ export class RequestOrderComponent implements OnInit {
   // funcion para preguntar si es hamburguesa o no
 
   askIfBurger(item: { id: string, description: string, price: number, amount: number}) {
+
     if (item.description.startsWith('Hamburguesa')) {
       //this.modal.nativeElement.showModal();
       const modalArray = this.modal.toArray();
@@ -96,8 +97,7 @@ export class RequestOrderComponent implements OnInit {
       status: 'pendiente',
       total: this.total
     }
-    const response = await this.burger.saveOrder(order);
-    console.log(response);
+    await this.burger.saveOrder(order);
     this.router.navigate(['/ingresar-nombre']);
   }
 

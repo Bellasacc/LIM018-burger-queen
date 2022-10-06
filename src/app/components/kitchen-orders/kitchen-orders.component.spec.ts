@@ -32,6 +32,13 @@ describe('KitchenOrdersComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('debería retornar la hora en formato de string', fakeAsync(() => {
+    const result = component.formatTime(3600);
+    
+    expect(result).toBe('01:00:00')
+  }));
+
+
   it('cuando haga click se debe actualizar el estado de la orden', fakeAsync(() => {
     let btn = fixture.debugElement.query(By.css('button')).nativeElement;
     btn.dispatchEvent(new Event('click'));
